@@ -23,7 +23,7 @@ void draw() {
 }
 
 color getInverseColor(color cor) {
-  return color(Math.abs(red(cor) - 255), Math.abs(blue(cor) - 255), Math.abs(green(cor) - 255));  
+  return color(Math.abs(red(cor) - 255), Math.abs(green(cor) - 255), Math.abs(blue(cor) - 255));  
 }
 
 //O método inverter itera por cada linha, e então por cada coluna e compara
