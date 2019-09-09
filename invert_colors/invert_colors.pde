@@ -1,12 +1,15 @@
+////////////////////////////////////////////////////
+// 1. Em linhas ímpares, inverta as cores dos pixels pares
+// 2. Em linhas pares, inverta as cores dos pixels ímpares
+////////////////////////////////////////////////////
+
 PImage img;
-int largura = 1920;
-int altura = 1080;
-int[] linhas = getLines(largura, altura);
+int largura = 500;
+int altura = 474;
 
 void setup() {
-  size(1920, 1080);
-  img = loadImage("flume.png");
-  linhas = getLines(largura, altura);
+  size(500, 474);
+  img = loadImage("rigby.jpg");
 }
 
 void draw() {
@@ -15,38 +18,25 @@ void draw() {
   inverter();
 }
 
-int[] getLines(int w, int h) {
-  int j = 1;
-  int size = w * h;
-  IntList lines = new IntList();
-  
-  for (int i = 0; i < size; i += w) {
-    lines.append(w * j++);
-  }
-  
-  return lines.array();
+color getInverseColor(color cor) {
+  return color(Math.abs(red(cor) - 255), Math.abs(blue(cor) - 255), Math.abs(green(cor) - 255));  
 }
 
 void inverter() {
-  int i = 0, j = 0;
-  //int linha = 0;
   loadPixels();
   
-  for (i = 0; i < linhas.length - 1; i++) {
-    for (j = linhas[i]; j < linhas[i + 1]; j++) {
-      if (i % 2 == 0) {
-        if(j % 2 != 0) {
-          pixels[j] = 0xffffff - pixels[j];
-        }
-      } else {
-        if(j % 2 == 0) {
-          
-          pixels[j] = 0xffffff - pixels[j];
-        }
+  for(int i = 0; i < img.height; i++) {
+    for(int j = 0; j < img.width; j++) {
+      color curr = pixels[i * img.width + j];
+      if(i % 2 == 0 && j % 2 != 0) {
+        pixels[i * img.width + j] = getInverseColor(curr);
+      }
+      
+      if(i % 2 != 0 && j % 2 == 0) {
+        pixels[i * img.width + j] = getInverseColor(curr);
       }
     }
   }
   
   updatePixels();
-  
 }
