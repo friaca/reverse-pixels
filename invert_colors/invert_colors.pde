@@ -4,24 +4,31 @@
 ////////////////////////////////////////////////////
 
 PImage img;
-int largura = 500;
-int altura = 474;
+String fileName = "rigby";
+String ext = ".jpg";
 
+//Cria o canvas que exibirá a imagem
 void setup() {
   size(500, 474);
-  img = loadImage("rigby.jpg");
+  img = loadImage(fileName + ext);
 }
 
+//Exibe a imagem
 void draw() {
   background(0);
   image(img, 0, 0);
   inverter();
+  save(fileName + "_inverted.jpg");
+  noLoop();
 }
 
 color getInverseColor(color cor) {
   return color(Math.abs(red(cor) - 255), Math.abs(blue(cor) - 255), Math.abs(green(cor) - 255));  
 }
 
+//O método inverter itera por cada linha, e então por cada coluna e compara
+//cada pixel e vê se ele condiz com os requisitos do desafio, se sim, chama 
+//o getInverseColor para aquele pixel
 void inverter() {
   loadPixels();
   
