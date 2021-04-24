@@ -1,4 +1,4 @@
-# challenge-pde
+# reverse-pixels
 Desafio de programação visual que consiste em dois passos:
 1. Em linhas ímpares, inverta as cores dos pixels pares
 2. Em linhas pares, inverta as cores dos pixels ímpares
